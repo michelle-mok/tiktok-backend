@@ -1,3 +1,3 @@
-export default function initLikesController {
-    
+export default function initLikesController(db) {
+
 }

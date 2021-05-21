@@ -19,7 +19,7 @@ export default function videoModel(sequelize, DataTypes) {
       references: {
         model: 'users',
         key: 'id',
-      }
+      },
     },
     music: {
       type: DataTypes.STRING,

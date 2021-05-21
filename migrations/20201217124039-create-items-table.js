@@ -44,7 +44,7 @@ module.exports = {
         references: {
           model: 'users',
           key: 'id',
-        }
+        },
       },
       description: {
         type: Sequelize.STRING,
@@ -77,7 +77,7 @@ module.exports = {
         references: {
           model: 'users',
           key: 'id',
-        }
+        },
       },
       video_id: {
         allowNull: false,
@@ -85,9 +85,9 @@ module.exports = {
         references: {
           model: 'videos',
           key: 'id',
-        }
-      }
-    })
+        },
+      },
+    });
   },
 
   down: async (queryInterface) => {
