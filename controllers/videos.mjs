@@ -7,8 +7,8 @@ export default function initVideosController(db) {
       console.log(error);
     }
   };
-
+ 
   return {
-    index,
+    index, 
   };
 }

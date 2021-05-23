@@ -7,11 +7,15 @@ import initLikesController from './controllers/likes.mjs';
 
 export default function routes(app) {
   const VideosController = initVideosController(db);
-
+  
   const UsersController = initUsersController(db);
   app.get('/users', UsersController.getUsers);
 
   const LikesController = initLikesController(db);
+  app.get('/likes/:id', LikesController.getLikes);
+  app.post('/addLike', LikesController.addLike);
+  app.post('/subtractLike', LikesController.subtractLike);
+
 
   // special JS page. Include the webpack index.html file
   app.get('/home', (request, response) => {
