@@ -8,7 +8,7 @@ export default function videoModel(sequelize, DataTypes) {
     },
     url: {
       allowNull: false,
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
     description: {
       type: DataTypes.STRING,
