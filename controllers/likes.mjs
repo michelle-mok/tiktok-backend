@@ -5,7 +5,7 @@ export default function initLikesController(db) {
     // add a like to the likes table
     const addLike = async (req, res) => {
     console.log('request body ======', req.body)
-    console.log('user id', req.cookies.userId)
+    console.log('user id', req.cookies)
 
     try {
       const newLike = await db.Like.create({
@@ -61,13 +61,13 @@ export default function initLikesController(db) {
       console.log('req.params.id', req.params.id);
 
       try {
-          const likes = db.Like.count({
+          const likes = await db.Like.count({
               where: {
                   videoId: req.params.id,
               }
           })
           console.log('all likes for this video=====', likes);
-          res.send({})
+          res.send({likes});
       }
       catch (error) {
           console.log(error);
