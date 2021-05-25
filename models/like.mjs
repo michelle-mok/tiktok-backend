@@ -12,15 +12,15 @@ export default function likeModel(sequelize, DataTypes) {
       references: {
         model: 'users',
         key: 'id',
-      }
+      },
     },
     videoId: {
       allowNull: false,
       type: DataTypes.INTEGER,
       references: {
-        model: 'video',
+        model: 'videos',
         key: 'id',
-      }
+      },
     },
     createdAt: {
       allowNull: false,

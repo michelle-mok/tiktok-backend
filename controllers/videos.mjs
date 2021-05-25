@@ -5,7 +5,7 @@ export default function initVideosController(db) {
         include: [{
           model: db.User,
           attributes: ['id', 'username', 'profilePic'],
-        }],
+        }, { model: db.Like }],
       });
       response.send(videos);
     } catch (error) {

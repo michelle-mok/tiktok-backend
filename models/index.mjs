@@ -38,14 +38,27 @@ db.Video = videoModel(sequelize, Sequelize.DataTypes);
 db.User = userModel(sequelize, Sequelize.DataTypes);
 db.Like = likeModel(sequelize, Sequelize.DataTypes);
 
+// // OPTION 1: through tables
+// A user posts many videos
 db.User.hasMany(db.Video);
 db.Video.belongsTo(db.User);
 
+// A video can be liked by many other users
+db.User.belongsToMany(db.Video, { through: db.Like });
+db.Video.belongsToMany(db.User, { through: db.Like });
+
 db.Video.hasMany(db.Like);
 db.Like.belongsTo(db.Video);
-
 db.User.hasMany(db.Like);
 db.Like.belongsTo(db.User);
+
+// OPTION 2: DEFINING FOREIGN KEYS
+// db.User.hasMany(db.Video, { foreignKey: 'userId' });
+// db.Video.belongsTo(db.User);
+// db.Video.hasMany(db.Like, { foreignKey: 'videoId' });
+// db.Like.belongsTo(db.Video);
+// db.User.hasMany(db.Like, { foreignKey: 'userId' });
+// db.Like.belongsTo(db.User);
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

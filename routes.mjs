@@ -14,7 +14,6 @@ export default function routes(app) {
   app.post('/login', UsersController.login);
 
   const LikesController = initLikesController(db);
-  app.get('/likes/:id', LikesController.getLikes);
   app.post('/addLike', LikesController.addLike);
   app.post('/subtractLike', LikesController.subtractLike);
 
