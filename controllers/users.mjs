@@ -11,19 +11,18 @@ export default function initUsersController(db) {
 
   const login = async (req, res) => {
     try {
-      console.log(req.body);
       const checkUser = await db.User.findOne({
         where: {
           username: req.body.username,
           password: req.body.password,
         },
       });
-      console.log(checkUser);
       if (checkUser === null) {
-        res.send('yo not found');
+        res.send('invalid');
       } else {
+        const { password, ...nonSensitiveUserInfo } = checkUser.dataValues;
         res.cookie('userId', checkUser.id);
-        res.send(200);
+        res.send(nonSensitiveUserInfo);
       }
     } catch (error) {
       console.log(error);
