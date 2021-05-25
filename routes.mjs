@@ -7,6 +7,7 @@ import initLikesController from './controllers/likes.mjs';
 
 export default function routes(app) {
   const VideosController = initVideosController(db);
+  app.get('/foryou', VideosController.index);
 
   const UsersController = initUsersController(db);
   app.get('/users', UsersController.getUsers);
