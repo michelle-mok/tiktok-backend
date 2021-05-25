@@ -8,7 +8,6 @@ export default function initVideosController(db) {
         }, { model: db.Like }],
       });
       response.send(videos);
-      response.send(200);
     } catch (error) {
       console.log(error);
     }
