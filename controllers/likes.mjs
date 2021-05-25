@@ -38,23 +38,8 @@ export default function initLikesController(db) {
     }
   };
 
-  // get all likes associated with a video
-  const getLikes = async (req, res) => {
-    console.log('req.params.id', req.params.id);
-
-    try {
-      const likes = await db.Like.count({
-        where: {
-          videoId: req.params.id,
-        },
-      });
-      console.log('all likes for this video=====', likes);
-      res.send({ likes });
-    }
-    catch (error) {
-      console.log(error);
-    }
+  return {
+    addLike,
+    subtractLike,
   };
-
-  return { addLike, subtractLike, getLikes };
 }
