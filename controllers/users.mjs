@@ -9,5 +9,14 @@ export default function initUsersController(db) {
     }
   };
 
-  return { getUsers };
+  const login = async (req, res) => {
+    try {
+      console.log(req.body);
+      res.send(200);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return { getUsers, login };
 }
