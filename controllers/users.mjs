@@ -9,5 +9,25 @@ export default function initUsersController(db) {
     }
   };
 
-  return { getUsers };
+  const login = async (req, res) => {
+    try {
+      const checkUser = await db.User.findOne({
+        where: {
+          username: req.body.username,
+          password: req.body.password,
+        },
+      });
+      if (checkUser === null) {
+        res.send('invalid');
+      } else {
+        const { password, ...nonSensitiveUserInfo } = checkUser.dataValues;
+        res.cookie('userId', checkUser.id);
+        res.send(nonSensitiveUserInfo);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return { getUsers, login };
 }
