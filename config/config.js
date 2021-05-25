@@ -1,6 +1,6 @@
 module.exports = {
   development: {
-    username: 'michellemok',
+    username: process.env.USER, // 'michellemok' || 'iannyip',
     password: null,
     database: 'tiktok_development',
     host: '127.0.0.1',
