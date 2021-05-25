@@ -22,6 +22,7 @@ export default function initUsersController(db) {
       if (checkUser === null) {
         res.send('yo not found');
       } else {
+        res.cookie('userId', checkUser.id);
         res.send(200);
       }
     } catch (error) {
