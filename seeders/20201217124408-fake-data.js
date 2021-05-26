@@ -2,28 +2,28 @@ module.exports = {
   up: async (queryInterface) => {
     const usersList = [
       {
-        profile_pic: 'https://p16-sign-sg.tiktokcdn.com/aweme/720x720/tos-alisg-avt-0068/52be3f928d96857470b67178ab2878fb.jpeg?x-expires=1621605600&x-signature=jHayn2pjezk0%2BHT%2BgEDDIC%2FzvOY%3D',
+        profile_pic: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80',
         password: 'qwerty',
         username: 'drifterjjlin',
         created_at: new Date(),
         updated_at: new Date(),
       },
       {
-        profile_pic: 'https://p16-sign-sg.tiktokcdn.com/aweme/720x720/tos-alisg-avt-0068/5abf05f46b753b10e5b8e46f8822099f.jpeg?x-expires=1621605600&x-signature=oTYP0MmNN%2BHDUZ2Cii4vyqwgECs%3D',
+        profile_pic: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80',
         password: 'qwerty',
         username: 'jevinkiong3',
         created_at: new Date(),
         updated_at: new Date(),
       },
       {
-        profile_pic: 'https://p16-sign-sg.tiktokcdn.com/aweme/720x720/tos-alisg-avt-0068/eb136c16cf3eb89bff14947775283bb2.jpeg?x-expires=1621641600&x-signature=Eqhs8A0%2FIfnfT09dsDWNz%2FSDfUU%3D',
+        profile_pic: 'https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=701&q=80',
         password: 'qwerty',
         username: 'vtkh2004',
         created_at: new Date(),
         updated_at: new Date(),
       },
       {
-        profile_pic: 'https://p77-sign-va.tiktokcdn.com/tos-maliva-avt-0068/1da7f697fbf493e5dbbb6920d932a846~c5_720x720.jpeg?x-expires=1621641600&x-signature=E1VW14DGIoCTGuoH19oyaqCq8hM%3D',
+        profile_pic: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1350&q=80',
         password: 'qwerty',
         username: '7_footskills',
         created_at: new Date(),
