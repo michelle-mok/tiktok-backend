@@ -8,11 +8,13 @@ import initLikesController from './controllers/likes.mjs';
 export default function routes(app) {
   const VideosController = initVideosController(db);
   app.get('/foryou', VideosController.index);
+  app.get('/userVideos', VideosController.userVideos);
 
   const UsersController = initUsersController(db);
   app.get('/users', UsersController.getUsers);
   app.post('/login', UsersController.login);
-
+  app.get('/userInfo', UsersController.getUserInfo);
+  
   const LikesController = initLikesController(db);
   app.post('/addLike', LikesController.addLike);
   app.post('/subtractLike', LikesController.subtractLike);
