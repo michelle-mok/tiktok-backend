@@ -5,6 +5,7 @@ import allConfig from '../config/config.js';
 import userModel from './user.mjs';
 import videoModel from './video.mjs';
 import likeModel from './like.mjs';
+import followModel from './follow.mjs';
 
 const env = process.env.NODE_ENV || 'development';
 
@@ -37,6 +38,7 @@ if (env === 'production') {
 db.Video = videoModel(sequelize, Sequelize.DataTypes);
 db.User = userModel(sequelize, Sequelize.DataTypes);
 db.Like = likeModel(sequelize, Sequelize.DataTypes);
+db.Follow = followModel(sequelize, Sequelize.DataTypes);
 
 // // OPTION 1: through tables
 // A user posts many videos
@@ -59,6 +61,20 @@ db.Like.belongsTo(db.User);
 // db.Like.belongsTo(db.Video);
 // db.User.hasMany(db.Like, { foreignKey: 'userId' });
 // db.Like.belongsTo(db.User);
+
+// a user can have many followers
+db.User.belongsToMany(db.User, {
+  as: 'follower',
+  foreignKey: 'followerId',
+  allowNull: false,
+  through: db.Follow,
+})
+db.User.belongsToMany(db.User, {
+  as: 'followed',
+  foreignKey: 'followedId',
+  allowNull: false,
+  through: db.Follow,
+})
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
