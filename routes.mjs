@@ -4,6 +4,7 @@ import db from './models/index.mjs';
 import initVideosController from './controllers/videos.mjs';
 import initUsersController from './controllers/users.mjs';
 import initLikesController from './controllers/likes.mjs';
+import initFollowsController from './controllers/follows.mjs';
 
 export default function routes(app) {
   const VideosController = initVideosController(db);
@@ -18,6 +19,9 @@ export default function routes(app) {
   const LikesController = initLikesController(db);
   app.post('/addLike', LikesController.addLike);
   app.post('/subtractLike', LikesController.subtractLike);
+
+  const FollowsController = initFollowsController(db);
+  app.get('/userFollows', FollowsController.getFollows);
 
   // special JS page. Include the webpack index.html file
   app.get('/home', (request, response) => {
