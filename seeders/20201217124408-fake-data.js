@@ -1342,10 +1342,12 @@ module.exports = {
 
     ];
 
+
     const likesList = [
       {
         user_id: 11,
         video_id: 1,
+
         created_at: new Date(),
         updated_at: new Date(),
       },

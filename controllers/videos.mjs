@@ -19,22 +19,24 @@ export default function initVideosController(db) {
   };
 
   const userVideos = async (req, res) => {
-    console.log('user id: =====', req.cookies.userId);
+    console.log('user id: =====', req.cookies.userId)
+
     try {
       const videos = await db.Video.findAll({
         where: {
           userId: Number(req.cookies.userId),
-        },
-      });
+        }
+      })
       console.log('list of user videos', videos);
-      res.send({ videos });
+      res.send ({ videos });
     }
     catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
 
   return {
-    index, userVideos,
+    index, userVideos
+
   };
 }

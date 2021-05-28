@@ -42,35 +42,37 @@ export default function initUsersController(db) {
     }
   };
 
-  // To delete this one
   const getUserInfo = async (req, res) => {
-    try {
-      console.log('user id=====', req.cookies.userId);
+  try {
+    console.log('user id=====', req.cookies.userId);
 
-      const user = await db.User.findOne({
-        where: {
-          id: Number(req.cookies.userId),
-        },
-      });
-      console.log('user ======', user);
+    const user = await db.User.findOne({
+      where: {
+        id: Number(req.cookies.userId)
+      },
+    })
+    console.log( 'user ======', user);
 
-      const videoUrls = await user.getVideos({
-        attributes: ['url'],
-      });
-      console.log('video urls', videoUrls);
+    const videoUrls = await user.getVideos({
+      attributes: ['url'],
+    });
+    console.log('video urls', videoUrls)
 
-      const likes = await db.Like.count({
-        where: {
-          userId: Number(req.cookies.userId),
-        },
-      });
-      console.log('nnumber of likes====', likes);
-      res.send({ user, videoUrls, likes });
-    }
-    catch (error) {
-      console.log(error);
-    }
-  };
+    const likes = await db.Like.count({
+      where: {
+        userId: Number(req.cookies.userId),
+      }
+    })
+    console.log('nnumber of likes====', likes)
+    res.send({user, videoUrls, likes})
+  }
+  catch (error) {
+    console.log(error);
+  }
+
+}
 
   return { getUsers, login, getUserInfo };
 }
+
+
