@@ -1,3 +1,5 @@
+import { Sequelize } from 'sequelize';
+
 export default function initUsersController(db) {
   const getUsers = async (req, res) => {
     try {
@@ -18,11 +20,22 @@ export default function initUsersController(db) {
         },
       });
       if (checkUser === null) {
+        // User does not exist - send invalid message
         res.send('invalid');
       } else {
+        // User exists. Get other data
+
+        const videos = await checkUser.getVideos({
+          attributes: ['id', 'url'],
+          include: [{
+            model: db.Like,
+            attributes: ['userId'],
+          }],
+        });
+
         const { password, ...nonSensitiveUserInfo } = checkUser.dataValues;
         res.cookie('userId', checkUser.id);
-        res.send(nonSensitiveUserInfo);
+        res.send({ ...nonSensitiveUserInfo, videos });
       }
     } catch (error) {
       console.log(error);
@@ -56,6 +69,7 @@ export default function initUsersController(db) {
   catch (error) {
     console.log(error);
   }
+
 }
 
   return { getUsers, login, getUserInfo };
