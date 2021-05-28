@@ -1,3 +1,5 @@
+import { Sequelize } from 'sequelize';
+
 export default function initUsersController(db) {
   const getUsers = async (req, res) => {
     try {
@@ -18,47 +20,57 @@ export default function initUsersController(db) {
         },
       });
       if (checkUser === null) {
+        // User does not exist - send invalid message
         res.send('invalid');
       } else {
+        // User exists. Get other data
+
+        const videos = await checkUser.getVideos({
+          attributes: ['id', 'url'],
+          include: [{
+            model: db.Like,
+            attributes: ['userId'],
+          }],
+        });
+
         const { password, ...nonSensitiveUserInfo } = checkUser.dataValues;
         res.cookie('userId', checkUser.id);
-        res.send(nonSensitiveUserInfo);
+        res.send({ ...nonSensitiveUserInfo, videos });
       }
     } catch (error) {
       console.log(error);
     }
   };
 
+  // To delete this one
   const getUserInfo = async (req, res) => {
-  try {
-    console.log('user id=====', req.cookies.userId);
+    try {
+      console.log('user id=====', req.cookies.userId);
 
-    const user = await db.User.findOne({
-      where: {
-        id: Number(req.cookies.userId)
-      },
-    })
-    console.log( 'user ======', user);
+      const user = await db.User.findOne({
+        where: {
+          id: Number(req.cookies.userId),
+        },
+      });
+      console.log('user ======', user);
 
-    const videoUrls = await user.getVideos({
-      attributes: ['url'],
-    });
-    console.log('video urls', videoUrls)
+      const videoUrls = await user.getVideos({
+        attributes: ['url'],
+      });
+      console.log('video urls', videoUrls);
 
-    const likes = await db.Like.count({
-      where: {
-        userId: Number(req.cookies.userId),
-      }
-    })
-    console.log('nnumber of likes====', likes)
-    res.send({user, videoUrls, likes})
-  }
-  catch (error) {
-    console.log(error);
-  }
-}
+      const likes = await db.Like.count({
+        where: {
+          userId: Number(req.cookies.userId),
+        },
+      });
+      console.log('nnumber of likes====', likes);
+      res.send({ user, videoUrls, likes });
+    }
+    catch (error) {
+      console.log(error);
+    }
+  };
 
   return { getUsers, login, getUserInfo };
 }
-
-
