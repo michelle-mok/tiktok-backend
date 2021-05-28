@@ -1,5 +1,5 @@
 export default function initFollowsController (db) {
-    const getFollows = async (req, res) => {
+    const getFollowers = async (req, res) => {
         try{
             const  followed = await db.User.findOne({
                 where: {
@@ -22,5 +22,27 @@ export default function initFollowsController (db) {
         }
     }
 
-    return { getFollows }
+    const getFollowing = async (req, res) => {
+        try {
+            const  following = await db.User.findOne({
+                where: {
+                    id: Number(req.cookies.userId),
+                },
+                include: [{ 
+                    model: db.User, 
+                    as: 'follower',
+                }]
+            })
+
+            
+            console.log('people that user is following', following.follower);
+        
+            
+            res.send({following: following.follower});
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+    return { getFollowers, getFollowing }
 }

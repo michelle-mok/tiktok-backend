@@ -21,7 +21,8 @@ export default function routes(app) {
   app.post('/subtractLike', LikesController.subtractLike);
 
   const FollowsController = initFollowsController(db);
-  app.get('/userFollows', FollowsController.getFollows);
+  app.get('/userFollowers', FollowsController.getFollowers);
+  app.get('/userFollowing', FollowsController.getFollowing);
 
   // special JS page. Include the webpack index.html file
   app.get('/home', (request, response) => {
