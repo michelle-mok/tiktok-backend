@@ -1342,12 +1342,10 @@ module.exports = {
 
     ];
 
-
     const likesList = [
       {
         user_id: 11,
         video_id: 1,
-
         created_at: new Date(),
         updated_at: new Date(),
       },
@@ -2163,16 +2161,69 @@ module.exports = {
       },
     ];
 
+    const followList = [
+      {
+        followed_id: 1,
+        follower_id:2,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        followed_id: 1,
+        follower_id:3,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        followed_id: 1,
+        follower_id:4,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        followed_id: 1,
+        follower_id:5,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        followed_id: 2,
+        follower_id:1,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        followed_id: 2,
+        follower_id:3,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        followed_id: 2,
+        follower_id:4,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        followed_id: 2,
+        follower_id:5,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+    ]
+
     try {
       await queryInterface.bulkInsert('users', usersList);
       await queryInterface.bulkInsert('videos', videosList);
       await queryInterface.bulkInsert('likes', likesList);
+      await queryInterface.bulkInsert('follows', followList);
     } catch (error) {
       console.log(error);
     }
   },
 
   down: async (queryInterface) => {
+    await queryInterface.bulkDelete('follows', null, {});
     await queryInterface.bulkDelete('likes', null, {});
     await queryInterface.bulkDelete('users', null, {});
     await queryInterface.bulkDelete('videos', null, {});
