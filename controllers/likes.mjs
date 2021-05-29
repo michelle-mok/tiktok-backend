@@ -38,8 +38,30 @@ export default function initLikesController(db) {
     }
   };
 
+  const getLikedVideos = async (req, res) => {
+    try {
+      const liked = await db.Like.findAll({
+        where: {
+          userId: Number(req.cookies.userId),
+        },
+        include: [
+          {
+            model: db.Video,
+            attributes: ['url'],
+          }
+        ]
+      })
+      console.log('liked===', liked);
+      res.send({liked});
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
+
   return {
     addLike,
     subtractLike,
+    getLikedVideos,
   };
 }
