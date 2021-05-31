@@ -35,8 +35,23 @@ export default function initVideosController(db) {
     }
   };
 
+  const uploadVideo = async (request, response) => {
+    try {
+      const uploadedVideo = await db.Video.create({
+        url: request.body.url,
+        description: request.body.description,
+        userId: request.body.userId,
+        music: request.body.music,
+        comments: 10,
+      });
+      response.sendStatus(200);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return {
-    index, userVideos,
+    index, userVideos, uploadVideo,
 
   };
 }
