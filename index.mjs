@@ -7,9 +7,10 @@ import bindRoutes from './routes.mjs';
 // Initialise Express instance
 const app = express();
 // Set CORS headers
+const frontendURL = 'http://localhost:3000' || 'https://cranky-feynman-504226.netlify.app';
 app.use(cors({
   credentials: true,
-  origin: 'https://cranky-feynman-504226.netlify.app' || 'http://localhost:3000',
+  origin: frontendURL,
 }));
 // Set the Express view engine to expect EJS templates
 app.set('view engine', 'ejs');
