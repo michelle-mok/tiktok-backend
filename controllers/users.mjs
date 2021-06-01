@@ -72,7 +72,23 @@ export default function initUsersController(db) {
 
 }
 
-  return { getUsers, login, getUserInfo };
+const registerUser = async (req, res) => {
+  try {
+    console.log('request body =====', req.body);
+    
+    const newUser = await db.User.create(req.body);
+    console.log('new user', newUser);
+
+    const { password, ...nonSensitiveUserInfo } = newUser.dataValues;
+    res.cookie('userId', newUser.id);
+    res.send({ ...nonSensitiveUserInfo });
+  }
+  catch (error) {
+    console.log(error);
+  }
+}
+
+  return { getUsers, login, getUserInfo, registerUser };
 }
 
 
