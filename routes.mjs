@@ -10,18 +10,22 @@ export default function routes(app) {
   const VideosController = initVideosController(db);
   app.get('/foryou', VideosController.index);
   app.get('/userVideos', VideosController.userVideos);
+  app.post('/uploadVideo', VideosController.uploadVideo);
 
   const UsersController = initUsersController(db);
   app.get('/users', UsersController.getUsers);
   app.post('/login', UsersController.login);
   app.get('/userInfo', UsersController.getUserInfo);
+<<<<<<< HEAD
   app.post('/registerUser', UsersController.registerUser);
+=======
+>>>>>>> 017015782d303705ea79286e652e7dcf51d6fd87
 
   const LikesController = initLikesController(db);
   app.post('/addLike', LikesController.addLike);
   app.post('/subtractLike', LikesController.subtractLike);
   app.get('/likedVideos', LikesController.getLikedVideos);
-  
+
   const FollowsController = initFollowsController(db);
   app.get('/userFollowers', FollowsController.getFollowers);
   app.get('/userFollowing', FollowsController.getFollowing);
