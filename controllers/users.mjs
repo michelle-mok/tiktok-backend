@@ -73,12 +73,19 @@ export default function initUsersController(db) {
 }
 
 const registerUser = async (req, res) => {
-  console.log('request body =====', req.body);
-  console.log('resuest file', req.file);
-  // const newUser = await db.create({
-  //   name: req.
-  // })
-  res.send('workssss');
+  try {
+    console.log('request body =====', req.body);
+    
+    const newUser = await db.User.create(req.body);
+    console.log('new user', newUser);
+
+    const { password, ...nonSensitiveUserInfo } = newUser.dataValues;
+    res.cookie('userId', newUser.id);
+    res.send({ ...nonSensitiveUserInfo });
+  }
+  catch (error) {
+    console.log(error);
+  }
 }
 
   return { getUsers, login, getUserInfo, registerUser };

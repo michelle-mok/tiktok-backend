@@ -16,10 +16,7 @@ export default function routes(app) {
   app.get('/users', UsersController.getUsers);
   app.post('/login', UsersController.login);
   app.get('/userInfo', UsersController.getUserInfo);
-<<<<<<< HEAD
   app.post('/registerUser', UsersController.registerUser);
-=======
->>>>>>> 017015782d303705ea79286e652e7dcf51d6fd87
 
   const LikesController = initLikesController(db);
   app.post('/addLike', LikesController.addLike);
