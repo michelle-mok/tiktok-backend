@@ -1,15 +1,15 @@
 import cookieParser from 'cookie-parser';
 import express from 'express';
 import methodOverride from 'method-override';
-import bindRoutes from './routes.mjs';
 import cors from 'cors';
+import bindRoutes from './routes.mjs';
 
 // Initialise Express instance
 const app = express();
 // Set CORS headers
-app.use(cors ({
+app.use(cors({
   credentials: true,
-  "origin": "http://localhost:3000",
+  origin: 'https://cranky-feynman-504226.netlify.app' || 'http://localhost:3000',
 }));
 // Set the Express view engine to expect EJS templates
 app.set('view engine', 'ejs');
