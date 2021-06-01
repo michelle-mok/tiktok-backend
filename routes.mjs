@@ -16,6 +16,7 @@ export default function routes(app) {
   app.get('/users', UsersController.getUsers);
   app.post('/login', UsersController.login);
   app.get('/userInfo', UsersController.getUserInfo);
+  app.post('/registerUser', UsersController.registerUser);
 
   const LikesController = initLikesController(db);
   app.post('/addLike', LikesController.addLike);
@@ -25,6 +26,8 @@ export default function routes(app) {
   const FollowsController = initFollowsController(db);
   app.get('/userFollowers', FollowsController.getFollowers);
   app.get('/userFollowing', FollowsController.getFollowing);
+  app.post('/followUser', FollowsController.followUser);
+  app.post('/unfollowUser', FollowsController.unfollowUser);
 
   // special JS page. Include the webpack index.html file
   app.get('/home', (request, response) => {
