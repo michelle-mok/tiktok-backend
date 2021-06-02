@@ -7,7 +7,8 @@ import bindRoutes from './routes.mjs';
 // Initialise Express instance
 const app = express();
 // Set CORS headers
-const frontendURL = 'https://cranky-feynman-504226.netlify.app' || 'http://localhost:3000';
+// 'https://cranky-feynman-504226.netlify.app'
+const frontendURL = process.env.FRONTEND_URL || 'http://localhost:3000';
 app.use(cors({
   credentials: true,
   origin: frontendURL,
