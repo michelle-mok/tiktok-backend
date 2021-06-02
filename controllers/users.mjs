@@ -88,7 +88,40 @@ const registerUser = async (req, res) => {
   }
 }
 
-  return { getUsers, login, getUserInfo, registerUser };
+const getUserDetails = async (req, res) => {
+  try {
+    const details = await db.User.findOne ({
+      where: {
+        id: Number(req.cookies.userId)
+      }
+    })
+    console.log('user details =====', details)
+    res.send(details);
+  }
+  catch (error) {
+    console.log(error);
+  }
+}
+
+const editDetails = async (req, res) => {
+  console.log('req body=====', req.body);
+  try {
+    const newDetails = await db.User.update (
+      req.body,
+      {
+      where: {
+        id: Number(req.cookies.userId)
+      },
+      returning: true,
+    });
+    console.log('updated user data', newDetails[1]);
+    res.send(newDetails[1]);
+  }
+  catch (error) {
+    console.log(error);
+  }
+}
+  return { getUsers, login, getUserInfo, registerUser, editDetails, getUserDetails };
 }
 
 
