@@ -17,7 +17,9 @@ export default function routes(app) {
   app.post('/login', UsersController.login);
   app.get('/userInfo', UsersController.getUserInfo);
   app.post('/registerUser', UsersController.registerUser);
-
+  app.get('/getUserDetails', UsersController.getUserDetails);
+  app.post('/editDetails', UsersController.editDetails);
+  
   const LikesController = initLikesController(db);
   app.post('/addLike', LikesController.addLike);
   app.post('/subtractLike', LikesController.subtractLike);
