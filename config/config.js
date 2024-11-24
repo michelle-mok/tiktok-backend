@@ -1,10 +1,11 @@
 module.exports = {
   development: {
-    username: process.env.USER, // 'michellemok' || 'iannyip',
+    username: process.env.USER || 'iannyip', // 'michellemok'
     password: null,
     database: 'tiktok_development',
     host: '127.0.0.1',
     dialect: 'postgres',
+
   },
   production: {
     use_env_variable: 'DATABASE_URL',

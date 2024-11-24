@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.mjs",
-    "watch": "nodemon index.mjs"
+    "watch": "nodemon index.mjs",
+    "seed": "dropdb tiktok_development --if-exists && npx sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all"
   },
   "repository": {
     "type": "git",
